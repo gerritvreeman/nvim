@@ -23,7 +23,7 @@ local function send_to_term(cmd)
 end
 
 vim.api.nvim_create_user_command("Term", function(args)
-  cmd = ""
+  local cmd = ""
   if (args["args"]) then
     cmd = cmd .. args["args"]
   end
