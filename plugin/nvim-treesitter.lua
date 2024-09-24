@@ -1,5 +1,9 @@
-require("nvim-treesitter.configs").setup({
-  ensure_installed = {
+local ok, ts = pcall(require, 'nvim-treesitter.configs')
+if not ok then
+  print("Module had an error")
+else
+  ts.setup({
+    ensure_installed = {
     "c",
     "lua",
     "vim",
@@ -15,5 +19,6 @@ require("nvim-treesitter.configs").setup({
     "regex",
     "swift",
     "yaml",
-  }
-})
+    }
+    })
+end
