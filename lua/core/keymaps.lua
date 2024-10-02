@@ -1,7 +1,5 @@
 vim.keymap.set({ "n", "x" }, "j", [[v:count == 0 ? 'gj' : 'j']], { expr = true })
 vim.keymap.set({ "n", "x" }, "k", [[v:count == 0 ? 'gk' : 'k']], { expr = true })
-vim.keymap.set("n", "]b", "<cmd>bnext<cr>", { desc = "Next" })
-vim.keymap.set("n", "[b", "<cmd>bprevious<cr>", { desc = "Previous" })
 vim.keymap.set("n", "<leader>b", ":ls<cr>:b ", { desc = "List and switch buffers" })
 vim.keymap.set("n", "<BS>", "<C-^>", { desc = "Alternate file" })
 vim.keymap.set("n", ">", ">>")
@@ -20,6 +18,17 @@ vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open quick
 vim.keymap.set("n", "<leader>e", ":Lexplore<cr>", { desc = "File explorer" })
 vim.keymap.set("n", "<leader>v", ":e $MYVIMRC<cr>", { desc = "Edit Neovim config" })
 vim.keymap.set("n", "<leader>cd", ":cd %:h<cr>", { desc = "Change dir to current file" })
+
+-- Some option toggles
+vim.keymap.set("n", "<leader>ob", ':exec &bg=="light"? "set bg=dark" : "set bg=light"<CR>',
+  { desc = "Toggle background" })
+vim.keymap.set("n", "<leader>occ", ':exec &cc==80? "setlocal cc=" : "setlocal cc=80"<CR>',
+  { desc = "Toggle colorcolumn" })
+vim.keymap.set("n", "<leader>ocl", ":setlocal invcursorline<cr>", { desc = "Toggle cursorline" })
+vim.keymap.set("n", "<leader>os", ":setlocal invspell<cr>", { desc = "Toggle spell" })
+vim.keymap.set("n", "<leader>ow", ":setlocal invwrap<cr>", { desc = "Toggle wrap" })
+vim.keymap.set("n", "<leader>on", ":setlocal invnumber<cr>", { desc = "Toggle number" })
+vim.keymap.set("n", "<leader>or", ":setlocal invrelativenumber<cr>", { desc = "Toggle number" })
 
 -- Readline keys
 vim.keymap.set("i", "<C-b>", "<left>", { desc = "Left" })
