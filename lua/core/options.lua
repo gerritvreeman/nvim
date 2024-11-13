@@ -4,9 +4,9 @@ vim.schedule(function()
   vim.o.clipboard = "unnamedplus"
 end)
 if vim.version().minor >= 11 then
-  vim.o.completeopt = "menu,menuone,popup,fuzzy"
+  vim.o.completeopt = "menu,menuone,popup,fuzzy,noinsert"
 else
-  vim.o.completeopt = "menu,menuone,popup"
+  vim.o.completeopt = "menu,menuone,popup,noinsert"
 end
 vim.o.equalalways = false
 vim.o.expandtab = true
@@ -15,7 +15,6 @@ vim.o.foldlevelstart = 99
 vim.o.foldmethod = 'expr'
 vim.o.gdefault = true
 vim.o.ignorecase = true
-vim.o.inccommand = "split"
 vim.o.infercase = true
 vim.o.laststatus = 3
 vim.o.linebreak = true

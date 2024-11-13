@@ -1,5 +1,9 @@
 vim.keymap.set({ "n", "x" }, "j", [[v:count == 0 ? 'gj' : 'j']], { expr = true })
 vim.keymap.set({ "n", "x" }, "k", [[v:count == 0 ? 'gk' : 'k']], { expr = true })
+vim.keymap.set("n", "<A-j>", ":m .+1<cr>==")
+vim.keymap.set("n", "<A-k>", ":m .-2<cr>==")
+vim.keymap.set("v", "<A-j>", ":m '>+1<cr>gv=gv")
+vim.keymap.set("v", "<A-k>", ":m '<-2<cr>gv=gv")
 vim.keymap.set("n", "<leader>b", ":ls<cr>:b ", { desc = "List and switch buffers" })
 vim.keymap.set("n", "<BS>", "<C-^>", { desc = "Alternate file" })
 vim.keymap.set("n", ">", ">>")
@@ -15,7 +19,6 @@ vim.keymap.set("t", "<esc>", "<c-\\><c-n>", { desc = "Normal mode" })
 vim.keymap.set("n", "<esc>", ":noh<cr><esc>", { desc = "Clear search highlights" })
 vim.keymap.set("n", "<leader>oo", ":silent !open .<cr>", { desc = "Open finder" })
 vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open quickfix list" })
-vim.keymap.set("n", "<leader>e", ":Lexplore<cr>", { desc = "File explorer" })
 vim.keymap.set("n", "<leader>v", ":e $MYVIMRC<cr>", { desc = "Edit Neovim config" })
 vim.keymap.set("n", "<leader>cd", ":cd %:h<cr>", { desc = "Change dir to current file" })
 
@@ -37,3 +40,28 @@ vim.keymap.set("i", "<C-a>", "<home>", { desc = "Append" })
 vim.keymap.set("i", "<C-e>", "<end>", { desc = "End" })
 vim.keymap.set("i", "<C-d>", "<del>", { desc = "Delete" })
 vim.keymap.set("i", "<C-k>", "<C-o>D", { desc = "Delete to end of line" })
+vim.keymap.set('i', '<C-n>', function()
+  if vim.fn.pumvisible() ~= 0 then
+    return '<C-n>'
+  else
+    return '<down>'
+  end
+end, { expr = true })
+vim.keymap.set('i', '<C-p>', function()
+  if vim.fn.pumvisible() ~= 0 then
+    return '<C-p>'
+  else
+    return '<up>'
+  end
+end, { expr = true })
+
+-- Completion and snippets
+vim.keymap.set({ 'i', 's' }, '<Tab>', function()
+  if vim.fn.pumvisible() ~= 0 then
+    return '<C-y>'
+  elseif vim.snippet.active({ direction = 1 }) then
+    return '<Cmd>lua vim.snippet.jump(1)<CR>'
+  else
+    return '<Tab>'
+  end
+end, { expr = true })
